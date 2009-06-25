@@ -35,13 +35,25 @@ From the first Rails app:
 
 From the second Rails app:
 
-  before_filter :check_token
-  require 'open-sesame'
-  def check_token
-    if params[:token].blank? or ! OpenSesame::Token.verify params[:token], OPEN_SESAME_SECRET
-      render :text => 'access denied', :status => 401
-    end
+before_filter :check_token
+require 'open-sesame'
+def check_token
+  return if session[:open_sesame_verified]
+  if params[:token].blank? or ! OpenSesame::Token.verify params[:token], OPEN_SESAME_SECRET
+    render :text => 'access denied', :status => 401
   end
+  session[:open_sesame_verified] = true
+end
+
+Signing
+=======
+
+You can also pass signed parameters.  Let's say you want to identify each user and you don't want them to mess with the ID that you pass.
+
+message: 123456789
+secret: "OPEN SESAME"
+token: 123456789-e349b9416e2b9f6954e80f03a5bb63d3f7401b70
+
 
 Example
 =======
