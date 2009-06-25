@@ -1,8 +1,47 @@
 OpenSesame
 ==========
 
-Introduction goes here.
+A simple way to pass an authenticated user from one Rails app to another.  The two Rails apps don't need to share a database or be on the same server.
 
+Mechanism
+=========
+
+Web Site A has an authenticated user that it wants to send to a protected feature on Web Site B.  It generates an authorization token that consists of a cryptographic hash of a timestamp plus a secret, plus the timestamp in plaintext.
+
+Example:
+
+timestamp: 2009-06-25T10:34:29-04:00
+secret: "OPEN SESAME"
+token: 20090625T1034-93a9d935fc64285645870a59db0d287b58f7caea
+
+Installation
+============
+
+  cd your_app
+  script/plugin install git://github.com/endymion/open-sesame.git
+
+Usage
+=====
+
+The default secret is "OPEN SESAME".  You should change that because the default secret is public knowledge.  Add the secret to your config/environment.rb:
+
+  OPEN_SESAME_SECRET = "Don't tell anybody, this is a secret."
+
+From the first Rails app:
+
+  require 'open-sesame'
+  token = OpenSesame::Token.generate DateTime.now, OPEN_SESAME_SECRET
+  redirect_to "http://second-app.net?token=#{token}"
+
+From the second Rails app:
+
+  before_filter :check_token
+  require 'open-sesame'
+  def check_token
+    if params[:token].blank? or ! OpenSesame::Token.verify params[:token], OPEN_SESAME_SECRET
+      render :text => 'access denied', :status => 401
+    end
+  end
 
 Example
 =======
