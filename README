@@ -14,6 +14,8 @@ timestamp: 2009-06-25T10:34:29-04:00
 secret: "OPEN SESAME"
 token: 20090625T1034-93a9d935fc64285645870a59db0d287b58f7caea
 
+Web Site B then checks that the timestamp is not more than an hour old, and it checks to verify that the timestamp plus the shared secret produces the correct hash.  Web Site B should deny access with a 401 response if the authentication token does not verify.
+
 Installation
 ============
 
