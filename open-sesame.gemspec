@@ -15,15 +15,19 @@ Gem::Specification.new do |s|
     "README.md"
   ]
   s.files = [
+    ".rvmrc",
+    "Gemfile",
+    "Gemfile.lock",
     "MIT-LICENSE",
+    "README.md",
     "Rakefile",
     "VERSION",
     "init.rb",
     "install.rb",
     "lib/open-sesame.rb",
-    "tasks/open_sesame_tasks.rake",
-    "test/open_sesame_test.rb",
-    "test/test_helper.rb",
+    "open-sesame.gemspec",
+    "spec/open-sesame_spec.rb",
+    "spec/spec_helper.rb",
     "uninstall.rb"
   ]
   s.homepage = "http://www.ryanalynporter.com/2009/06/25/authorizing-users-between-web-sites-with-open-sesame/"
@@ -41,6 +45,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<simplecov>, ["~> 0.6.4"])
       s.add_development_dependency(%q<yard>, ["~> 0.8.2.1"])
       s.add_development_dependency(%q<redcarpet>, ["~> 2.1.1"])
+      s.add_development_dependency(%q<delorean>, ["~> 2.0.0"])
       s.add_development_dependency(%q<debugger>, [">= 0"])
     else
       s.add_dependency(%q<rspec>, ["~> 2.11.0"])
@@ -48,6 +53,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<simplecov>, ["~> 0.6.4"])
       s.add_dependency(%q<yard>, ["~> 0.8.2.1"])
       s.add_dependency(%q<redcarpet>, ["~> 2.1.1"])
+      s.add_dependency(%q<delorean>, ["~> 2.0.0"])
       s.add_dependency(%q<debugger>, [">= 0"])
     end
   else
@@ -56,6 +62,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<simplecov>, ["~> 0.6.4"])
     s.add_dependency(%q<yard>, ["~> 0.8.2.1"])
     s.add_dependency(%q<redcarpet>, ["~> 2.1.1"])
+    s.add_dependency(%q<delorean>, ["~> 2.0.0"])
     s.add_dependency(%q<debugger>, [">= 0"])
   end
 end
