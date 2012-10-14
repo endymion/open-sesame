@@ -2,6 +2,8 @@
 
 A simple way to pass an authenticated user from one Ruby web app to another.  The two web apps don't need to share a database or be on the same server.  Does not depend on Rails, and works just as well with Sinatra or any other Ruby system.
 
+Learn more about its origins in the article [Authorizing Users Between Web Sites With Open Sesame](http://www.ryanalynporter.com/2009/06/25/authorizing-users-between-web-sites-with-open-sesame/).  The gem is hosted at [RubyGems](https://rubygems.org/gems/open-sesame), and the documentation is hosted at [RubyDoc.info](http://rubydoc.info/gems/open-sesame).
+
 # Mechanism
 
 Web Site A has an authenticated user that it wants to send to a protected feature on Web Site B.  It generates an authorization token that consists of a cryptographic hash of a timestamp plus a secret, plus the timestamp in plaintext.
