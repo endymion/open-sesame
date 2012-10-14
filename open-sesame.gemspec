@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "open-sesame"
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ryan Alyn Porter"]
-  s.date = "2012-10-13"
+  s.date = "2012-10-14"
   s.description = "Use a time-sensitive cryptographic token based on a shared secret phrase to generate an authorization token for passing traffic from one web site to another."
   s.extra_rdoc_files = [
     "README.md"
