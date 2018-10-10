@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 group(:test, :development) do
-  gem "rspec", "~> 2.11.0"
+  gem "rspec", "~> 3.8.0"
   gem "jeweler", "~> 2.3.9"
   gem "simplecov", "~> 0.6.4"
   gem "yard", "~> 0.9.11"

@@ -21,30 +21,30 @@ describe OpenSesame do
 
     it 'can be verified.' do
       token = OpenSesame::Token.generate(@secret)
-      OpenSesame::Token.verify(token, @secret).should be_true
+      OpenSesame::Token.verify(token, @secret).should be true
 
       token2 = OpenSesame::Token.generate # Default 'secret'.
-      OpenSesame::Token.verify(token2).should be_true
+      OpenSesame::Token.verify(token2).should be true
     end
 
     it 'expires after one hour' do
       token = OpenSesame::Token.generate @secret
       Delorean.time_travel_to "59 minutes from now"
-      OpenSesame::Token.verify(token, @secret).should be_true
+      OpenSesame::Token.verify(token, @secret).should be true
       Delorean.time_travel_to "61 minutes from now"
-      OpenSesame::Token.verify(token, @secret).should_not be_true
+      OpenSesame::Token.verify(token, @secret).should_not be true
     end
 
     it 'cannot be verified if the time stamp is modified.' do
       token = OpenSesame::Token.generate @secret
       token.gsub!(/^(\d{8})/) {|match| match.to_i + 100 }
-      OpenSesame::Token.verify(token, @secret).should_not be_true
+      OpenSesame::Token.verify(token, @secret).should_not be true
     end
 
     it 'cannot be verified if the hash is modified.' do
       token = OpenSesame::Token.generate @secret
       token[token.length - 1] = 'z'
-      OpenSesame::Token.verify(token, @secret).should_not be_true
+      OpenSesame::Token.verify(token, @secret).should_not be true
     end
 
   end
@@ -63,22 +63,22 @@ describe OpenSesame do
 
     it 'can be verified.' do
       message = OpenSesame::Message.generate 'WELL HELLO THERE', @secret
-      OpenSesame::Message.verify(message, @secret).should be_true
+      OpenSesame::Message.verify(message, @secret).should be true
 
       message2 = OpenSesame::Message.generate 'WELL HELLO THERE' # Default 'secret'.
-      OpenSesame::Message.verify(message2).should be_true
+      OpenSesame::Message.verify(message2).should be true
     end
 
     it 'cannot be verified if the message is modified' do
       message = OpenSesame::Message.generate 'WELL HELLO THERE', @secret
       message.gsub!(/HELLO/, 'GOODBYE')
-      OpenSesame::Message.verify(message, @secret).should_not be_true
+      OpenSesame::Message.verify(message, @secret).should_not be true
     end
 
     it 'cannot be verified if the hash is modified' do
       message = OpenSesame::Message.generate 'WELL HELLO THERE', @secret
       message[message.length - 1] = 'z'
-      OpenSesame::Message.verify(message, @secret).should_not be_true
+      OpenSesame::Message.verify(message, @secret).should_not be true
     end
 
     it 'returns the message if it verifies' do
